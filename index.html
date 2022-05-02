@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Instrument Store</title>
+</head>
+<body>
+<div class="popUp"></div>
+<div id="app">
+    <div class="header">
+        <h1>Joe&rsquo;s Instrument Store</h1>
+        <span>
+            <button id="cart-button" v-on:click="emptyCart()">CART (0)</button>
+        </span>
+    </div>
+    <div class="store">
+        <p v-if="storeEmpty()">Store is empty</p>
+        <div v-for="item in items" v-if="!item.inCart" v-bind:class="['item', item.brand.toLowerCase()]" v-on:click="showPopUp(item)">
+            <img v-bind:src="item.image" v-bind:alt="item.name">
+            <p>{{item.name}}</p>
+            <button v-on:click="addToCart(item)">Add to Cart</button>
+        </div>
+    </div>
+    <h3>Add New Instrument</h3>
+    <div>
+        <p>
+            <label for="formName">Name</label><br/>
+            <input type="text" v-model="formName" name="formName" id="formName">
+        </p>
+        <p>
+            <label for="formType">Instrument Type</label><br/>
+            <input type="text" v-model="formType" name="formType" id="formType">
+        </p>
+        <p>
+            <label for="formPrice">Price</label><br/>
+            <input type="text" v-model="formPrice" name="formPrice" id="formPrice">
+        </p>
+        <p>
+            <label for="formBrand">Brand</label><br/>
+            <input type="text" v-model="formBrand" name="formBrand" id="formBrand">
+        </p>
+        <button v-on:click="addItem()">Submit</button>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
